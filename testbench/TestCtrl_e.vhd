@@ -46,26 +46,19 @@ library ieee ;
   use ieee.numeric_std.all ;
   use ieee.numeric_std_unsigned.all ;
   use std.textio.all ;
-  
-library OSVVM ; 
-  context OSVVM.OsvvmContext ; 
 
-library osvvm_uart ; 
-  context osvvm_uart.UartContext ; 
+library OSVVM ;
+  context OSVVM.OsvvmContext ;
+
+library osvvm_uart ;
+  context osvvm_uart.UartContext ;
 
 use work.OsvvmTestCommonPkg.all ;
 
 entity TestCtrl is
-  generic (
-    tperiod_Clk           : time := 10 ns 
-  ) ; 
   port (
     -- Record Interface
-    UartTxRec           : InOut UartRecType ;
-    UartRxRec           : InOut UartRecType ;
-
-    -- Global Signal Interface
-    Clk                 : In    std_logic ;
-    nReset              : In    std_logic 
+    UartTxRec           : inout UartRecType ;
+    UartRxRec           : inout UartRecType
   ) ;
 end TestCtrl ;

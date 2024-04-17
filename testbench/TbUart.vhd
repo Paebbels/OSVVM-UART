@@ -58,10 +58,7 @@ end TbUart ;
 
 architecture TestHarness of TbUart is
 
-  constant tperiod_Clk  : time := 10 ns ;
   constant tpd          : time := 2 ns ;
-  signal Clk            : std_logic := '0' ;
-  signal nReset         : std_logic ;
 
   -- Uart Interface
   signal SerialData     : std_logic ;
@@ -70,15 +67,9 @@ architecture TestHarness of TbUart is
   component TestCtrl 
   -- Stimulus generation and synchronization
   ------------------------------------------------------------
-  generic (
-    tperiod_Clk           : time := 10 ns 
-  ) ; 
   port (
     UartTxRec          : InOut UartRecType ;
-    UartRxRec          : InOut UartRecType ;
-
-    Clk                : In    std_logic ;
-    nReset             : In    std_logic 
+    UartRxRec          : InOut UartRecType
   ) ;
   end component ;
 
@@ -90,28 +81,11 @@ architecture TestHarness of TbUart is
 begin
 
   ------------------------------------------------------------
-  -- create Clock 
-  Osvvm.TbUtilPkg.CreateClock ( 
-  ------------------------------------------------------------
-    Clk        => Clk, 
-    Period     => tperiod_Clk 
-  )  ; 
-  
-  ------------------------------------------------------------
-  -- create nReset 
-  Osvvm.TbUtilPkg.CreateReset ( 
-  ------------------------------------------------------------
-    Reset       => nReset,
-    ResetActive => '0',
-    Clk         => Clk,
-    Period      => 7 * tperiod_Clk,
-    tpd         => tpd
-  ) ;
-
-
-  ------------------------------------------------------------
   UartTx_1 : UartTx 
   ------------------------------------------------------------
+  generic map (
+    DEFAULT_BAUD        => UART_BAUD_PERIOD_115200
+  )
   port map (
     TransRec            => UartTxRec,
     SerialDataOut       => SerialData   
@@ -121,6 +95,9 @@ begin
   ------------------------------------------------------------
   UartRx_1 : UartRx 
   ------------------------------------------------------------
+  generic map (
+    DEFAULT_BAUD        => UART_BAUD_PERIOD_115200
+  )
   port map (
     TransRec            => UartRxRec,
     SerialDataIn        => SerialData 
@@ -131,15 +108,9 @@ begin
   TestCtrl_1 : TestCtrl 
   -- Stimulus generation and synchronization
   ------------------------------------------------------------
-  generic map (
-    tperiod_Clk         => tperiod_Clk
-  ) 
   port map (
     UartTxRec             => UartTxRec,
-    UartRxRec             => UartRxRec,
-
-    Clk                   => Clk,
-    nReset                => nReset
+    UartRxRec             => UartRxRec
   ) ;
 
 end TestHarness ;
