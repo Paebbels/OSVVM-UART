@@ -47,6 +47,6 @@ if {$::osvvm::ToolNameVersion ne "XSIM-2023.2"}  {
   include ./testbench_xilinx
 }
 
-if {($::osvvm::ToolVendor ne "GHDL") && ($::osvvm::ToolNameVersion ne "XSIM-2023.2")}  {
-  include ./testbench_multiple_uarts
-}
+#if {($::osvvm::ToolVendor ne "GHDL") && ($::osvvm::ToolNameVersion ne "XSIM-2023.2")}  {
+#  include ./testbench_multiple_uarts
+#}

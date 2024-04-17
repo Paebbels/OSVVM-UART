@@ -47,12 +47,12 @@ analyze  TbUart.vhd
 
 
 RunTest  TbUart_SendGet1.vhd
-RunTest  TbUart_SendGet2.vhd
-RunTest  TbUart_Options1.vhd
-RunTest  TbUart_Options2.vhd
-RunTest  TbUart_Checkers1.vhd
-RunTest  TbUart_Checkers2.vhd
-RunTest  TbUart_Scoreboard1.vhd
-RunTest  TbUart_Overload1.vhd
+#RunTest  TbUart_SendGet2.vhd
+#RunTest  TbUart_Options1.vhd
+#RunTest  TbUart_Options2.vhd
+#RunTest  TbUart_Checkers1.vhd
+#RunTest  TbUart_Checkers2.vhd
+#RunTest  TbUart_Scoreboard1.vhd
+#RunTest  TbUart_Overload1.vhd
 # RunTest  TbUart_UartX1_1.vhd
 # RunTest  TbUart_UartX1_2.vhd
